@@ -1,6 +1,15 @@
-(ns baflo.tic-tac-toe.main)
+(ns baflo.tic-tac-toe.main 
+  (:require ["readline" :as readline]))
 
-(def field (atom (repeat 9 :empty)))
+(.emitKeypressEvents readline js/process.stdin)
+(.setRawMode js/process.stdin true)
+
+
+(def field (atom (vec (repeat 9 :empty))))
+(def user (atom :circle))
+
+(defn next-user []
+  (swap! user {:circle :cross :cross :circle}))
 
 (defn get-fields [field indices]
   (map field indices))
@@ -20,8 +29,32 @@
 (defn won? [field user]
   (true? (some #(= (repeat 3 user) %) (all-strikes field))))
 
+(defn play [field user idx]
+  (swap! field #(assoc %1 idx user)))
+
+(defn empty-field [n] ["     "
+                       (str "  " n "  ")
+                       "     "])
+(defn cross-field [n] [" \\ / "
+                       "  X  "
+                       " / \\ "])
+(defn circle-field [n] [" /~\\ "
+                        "(   )"
+                        " \\~/ "])
+
+(defn print-field [field]
+  (println (clojure.string/join "\n" (apply interleave (partition 3 (map #(apply str %) (partition 3 (apply interleave
+                                                                                                            (map-indexed #(({:empty empty-field :cross cross-field :circle circle-field} %2) (inc %1)) field)))))))))
+
 (defn reload! []
   (println "App reloaded!"))
 
 (defn main! []
-  (println "Tic Tac Toe!"))
+  (println "Tic Tac Toe")
+  (print-field @field)
+  (.on js/process.stdin "keypress" #(when ((set (range 1 10)) (js/parseInt %1))
+                                      (play field (next-user) (dec (js/parseInt %1)))
+                                      (println "--------------")
+                                      (print-field @field)
+                                      (when (won? @field @user)
+                                        (js/process.exit)))))
