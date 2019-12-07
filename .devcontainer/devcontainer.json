@@ -1,0 +1,15 @@
+{
+	"name": "clojure",
+	"dockerComposeFile": "./vscode.json",
+	"service": "vscode",
+	"extensions": [
+		"betterthantomorrow.calva"
+	],
+	"settings": {
+	  "terminal.integrated.fontFamily": "Roboto Mono for Powerline",
+	  "files.associations": {
+		"Jenkinsfile*": "groovy"
+	  },
+	  "typescript.tsserver.maxTsServerMemory": 6144
+	}
+}

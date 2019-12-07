@@ -1,0 +1,30 @@
+{
+  "version": "3.3",
+  "services": {
+    "vscode": {
+      "build": {
+        "context": "./image"
+      },
+      "entrypoint": "/home/node/scripts/entrypoint.sh",
+      "command": "zsh",
+      "tty": true,
+      "ports": [],
+      "volumes": [
+        "/var/run/docker.sock:/var/run/docker.sock",
+        "vscode-base-config:/home/node/vscode-base-config",
+        {
+          "type": "bind",
+          "source": "..",
+          "target": "/workspaces/clojure",
+          "consistency": "cached"
+        }
+      ],
+      "environment": {}
+    }
+  },
+  "volumes": {
+    "vscode-base-config": {
+      "external": true
+    }
+  }
+}

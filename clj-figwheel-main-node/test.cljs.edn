@@ -1,0 +1,2 @@
+{:main baflo.nodejs.main
+ :target :nodejs}
