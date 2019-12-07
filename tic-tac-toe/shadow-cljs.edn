@@ -1,0 +1,7 @@
+{:source-paths ["src"]
+ :dependencies []
+ :builds {:app {:target :node-script
+                :output-to "target/main.js"
+                :main baflo.tic-tac-toe.main/main!
+                :devtools {:after-load baflo.tic-tac-toe.main/reload!}
+                :compiler-options {:optimizations :none}}}}
