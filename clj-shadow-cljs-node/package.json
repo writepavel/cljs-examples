@@ -1,0 +1,11 @@
+{
+  "name": "clj-shadow-cljs-node",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "shadow-cljs": "^2.8.81",
+    "source-map-support": "^0.5.16",
+    "ws": "^7.2.0"
+  }
+}
