@@ -6,14 +6,12 @@
 (def hello-message "Hello world!!!")
 
 (defn -main []
-    (println "hello 5"))
+    (println "hello"))
 
 (set! *main-cli-fn* -main) ;; this is required
 
 (defn ^:before-load my-before-reload-callback []
-  (println "BEFORE reload 7!!!"))
+  (println "BEFORE reload!!!"))
 
 (defn ^:after-load my-after-reload-callback []
-  (println "AFTER reload 7!!!"))
-
-(println "STARTED! 7")
+  (println "AFTER reload!!!"))
