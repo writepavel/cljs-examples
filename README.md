@@ -2,4 +2,4 @@
 
 Forked from https://github.com/baflo/cljs-examples
 
-Updated for running figwheel project with Calva on Windows machine
+Updated `clj-figwheel-main-node` project to run it with figwheel and Calva on Windows machine

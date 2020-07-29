@@ -1,11 +1,23 @@
 {:deps {org.clojure/clojure {:mvn/version "1.10.1"}
-        org.clojure/clojurescript {:mvn/version "1.10.597"}}
+        org.clojure/clojurescript {:mvn/version "1.10.773"}
+        nrepl {:mvn/version "0.7.0"}
+        cider/cider-nrepl {:mvn/version "0.25.2"}
+        cider/piggieback {:mvn/version "0.5.0"}
+        figwheel-sidecar {:mvn/version "0.5.20"}}
+
  ;; setup some development paths
  :paths ["src" "target" "resources"]
+;  :cljs-devtools true
  ;; setup a helpful alias to start the build
  :aliases {:fig {:extra-deps {com.bhauman/rebel-readline-cljs {:mvn/version "0.1.4"}
-                              com.bhauman/figwheel-main {:mvn/version "0.1.9"}}
-                 :extra-paths ["target" "test"]} 
+                              com.bhauman/figwheel-main {:mvn/version "0.2.11"}}
+                 :extra-paths ["target" "test"]
+                 :main-opts ["-m" "nrepl.cmdline"
+                             "--middleware"
+                             "[cider.nrepl/cider-middleware,cider.piggieback/wrap-cljs-repl]"
+                             "--bind" "0.0.0.0"
+                             "--port" "7888"
+                             "--headless"]}
            :build {:main-opts ["-m" "figwheel.main" "-b" "dev" "-r"]}
            :min   {:main-opts ["-m" "figwheel.main" "-O" "advanced" "-bo" "dev"]}
            :test  {:main-opts ["-m" "figwheel.main" "-co" "test.cljs.edn" "-m" fresh-figwheel-main.test-runner]}}}

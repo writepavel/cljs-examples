@@ -1,2 +1,3 @@
-{:main baflo.nodejs.main
- :target :nodejs}
+{:main my-project.nodejs.main
+ :target :nodejs
+ :asset-path "target//node//dev"}

@@ -1,4 +1,4 @@
-(ns ^:figwheel-hooks baflo.nodejs.main
+(ns ^:figwheel-hooks my-project.nodejs.main
   (:require [cljs.nodejs :as nodejs]))
 
 (nodejs/enable-util-print!)

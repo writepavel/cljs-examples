@@ -1,14 +1,18 @@
 {
-  "name": "baflo.nodejs.main",
+  "name": "my-project.nodejs.main",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "source-map-support": "^0.5.16",
-    "ws": "^7.2.0"
+    "source-map-support": "^0.5.16"
   },
   "scripts": {
+    "build:dev-win": "powershell -command clojure -A:fig:build",
     "build:dev": "clojure -A:fig:build",
-    "nrepl:fig": "clojure -Sdeps '{:deps {nrepl {:mvn/version \"0.6.0\"} cider/cider-nrepl {:mvn/version \"0.21.1\"} cider/piggieback {:mvn/version \"0.4.1\"} figwheel-sidecar {:mvn/version \"0.5.18\"}}}' -A:fig -m nrepl.cmdline  --middleware \"[cider.nrepl/cider-middleware cider.piggieback/wrap-cljs-repl]\" --bind \"0.0.0.0\" --port 7888"
+    "nrepl:fig": "clojure -Sdeps '{:deps {nrepl {:mvn/version \"0.6.0\"} cider/cider-nrepl {:mvn/version \"0.21.1\"} cider/piggieback {:mvn/version \"0.4.1\"} figwheel-sidecar {:mvn/version \"0.5.18\"}}}' -A:fig -m nrepl.cmdline  --middleware \"[cider.nrepl/cider-middleware cider.piggieback/wrap-cljs-repl]\" --bind \"0.0.0.0\" --port 7888",
+    "nrepl:fig-win": "powershell -command clojure -A:fig -m nrepl.cmdline  --middleware '[cider.nrepl/cider-middleware cider.piggieback/wrap-cljs-repl]' --bind '0.0.0.0' --port 7888"
+  },
+  "devDependencies": {
+    "ws": "^7.3.1"
   }
 }
